@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lionel Laush — Официальная Страница</title>
+<meta name="description" content="Официальная страница Lionel Laush — хоккеист, тхэквондист, геймер, гонщик, любитель кроликов, собак, суперкаров и золота.">
+<meta property="og:title" content="Lionel Laush — Official Page">
+<meta property="og:description" content="Хоккей · Тхэквондо · Roblox · Minecraft · Lamborghini · Gold · Квадроциклы · Будущая Легенда.">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#FFD700;--gold2:#DAA520;--gold3:#B8860B;
+  --bg:#08080c;--card:#111117;--cb:rgba(255,215,0,.12);
+  --cyan:#00e5ff;--grn:#39ff14;--red:#ff3b3b;--purple:#a855f7;
+  --wh:#f0ece4;--dim:rgba(255,255,255,.45);
+}
+/* GOLD THEME */
+body.gold-theme{--bg:#1a1505;--card:#2a2010;--cb:rgba(255,215,0,.2);--dim:rgba(255,215,0,.5);}
+body.gold-theme .bg{background-image:radial-gradient(ellipse at 20% 50%,rgba(255,215,0,.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(255,215,0,.06) 0%,transparent 50%),linear-gradient(rgba(255,215,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,.04) 1px,transparent 1px);}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--wh);overflow-x:hidden;transition:background .5s,color .5s;}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0;transition:all .5s;
+  background-image:radial-gradient(ellipse at 20% 50%,rgba(255,215,0,.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(255,215,0,.03) 0%,transparent 50%),linear-gradient(rgba(255,215,0,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,.02) 1px,transparent 1px);background-size:100% 100%,100% 100%,50px 50px,50px 50px;}
+.fe{position:fixed;font-size:1.8rem;opacity:0;animation:flt linear infinite;pointer-events:none;z-index:0;}
+@keyframes flt{0%{transform:translateY(105vh) rotate(0);opacity:0;}8%{opacity:.12;}90%{opacity:.12;}100%{transform:translateY(-5vh) rotate(360deg);opacity:0;}}
+.w{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:16px;}
+
+/* TOP BAR */
+.topbar{display:flex;justify-content:flex-end;gap:8px;padding:8px 0;position:sticky;top:0;z-index:50;}
+.topbar button{background:var(--card);border:1px solid var(--cb);color:var(--gold);font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif;}
+.topbar button:hover{background:var(--gold);color:#000;}
+.topbar button.active{background:var(--gold);color:#000;}
+
+/* HERO */
+.hero{text-align:center;padding:30px 10px 20px;}
+.badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold3));color:#000;font-family:'Russo One',sans-serif;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:30px;margin-bottom:20px;animation:gp 2s ease-in-out infinite;}
+@keyframes gp{0%,100%{box-shadow:0 0 14px rgba(255,215,0,.3);}50%{box-shadow:0 0 40px rgba(255,215,0,.6);}}
+
+/* AVATAR */
+.av-wrap{width:220px;height:260px;margin:0 auto 16px;position:relative;}
+.av-wrap svg{width:100%;height:100%;filter:drop-shadow(0 0 30px rgba(255,215,0,.2));}
+.av-glow{position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(255,215,0,.1) 0%,transparent 70%);animation:ag 3s ease-in-out infinite;pointer-events:none;}
+@keyframes ag{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
+
+.hero h1{font-family:'Russo One',sans-serif;font-size:clamp(2rem,8vw,3.6rem);background:linear-gradient(135deg,var(--gold),#fff,var(--gold),#fff,var(--gold));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 3s ease-in-out infinite;line-height:1.15;margin-bottom:4px;}
+@keyframes shim{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.hero-sub{color:var(--dim);font-weight:700;font-size:.95rem;letter-spacing:1px;}.hero-sub .gold{color:var(--gold);}
+.age-pill{display:inline-block;margin-top:14px;background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(255,215,0,.03));border:1px solid var(--cb);padding:6px 22px;border-radius:30px;color:var(--gold);font-weight:800;font-size:.9rem;}
+.bling-div{text-align:center;margin:16px 0;font-size:1.1rem;letter-spacing:10px;color:var(--gold);opacity:.3;}
+
+/* BIRTHDAY */
+.bday{text-align:center;margin:20px 0;padding:20px;background:linear-gradient(135deg,rgba(255,215,0,.07),rgba(168,85,247,.05));border:1px solid rgba(168,85,247,.15);border-radius:16px;position:relative;overflow:hidden;}
+.bday::before{content:'🎂';position:absolute;top:10px;left:15px;font-size:1.5rem;opacity:.2;}
+.bday::after{content:'🎉';position:absolute;bottom:10px;right:15px;font-size:1.5rem;opacity:.2;}
+.bday-label{font-size:.7rem;color:var(--purple);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:8px;}
+.bday-timer{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.bday-unit{text-align:center;}
+.bday-num{font-family:'Russo One',sans-serif;font-size:1.6rem;color:var(--gold);}
+.bday-lbl{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
+.bday-age{margin-top:8px;font-size:.8rem;color:var(--purple);font-weight:700;}
+
+/* COUNTER & STATS */
+.ctr{text-align:center;margin:16px 0;padding:14px;background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,215,0,.02));border:1px solid var(--cb);border-radius:14px;position:relative;overflow:hidden;}
+.ctr::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent,rgba(255,215,0,.05),transparent,rgba(255,215,0,.05));animation:sp 6s linear infinite;}
+@keyframes sp{to{transform:rotate(360deg);}}
+.ctr .n{font-family:'Russo One',sans-serif;font-size:1.8rem;color:var(--gold);position:relative;}
+.ctr .l{font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;position:relative;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0;}
+@media(max-width:500px){.stats{grid-template-columns:repeat(2,1fr);}}
+.st{background:var(--card);border:1px solid var(--cb);border-radius:14px;padding:12px 6px;text-align:center;transition:transform .3s;}
+.st:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(255,215,0,.15);}
+.st .n{font-family:'Russo One',sans-serif;font-size:1.3rem;color:var(--gold);}
+.st .l{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+/* SECTIONS */
+.sec{margin:28px 0;}
+.sec-t{font-family:'Russo One',sans-serif;font-size:1.2rem;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-t .e{font-size:1.4rem;}
+
+/* AVATAR CUSTOMIZER */
+.cust{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:16px;}
+.cust-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.cust-row label{font-size:.8rem;color:var(--dim);min-width:60px;font-weight:700;}
+.cust-colors{display:flex;gap:6px;}
+.cust-c{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .2s;}
+.cust-c:hover,.cust-c.active{border-color:#fff;transform:scale(1.15);}
+
+/* CARDS */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:600px){.g3{grid-template-columns:1fr 1fr;}.g2{grid-template-columns:1fr;}}
+@media(max-width:400px){.g3{grid-template-columns:1fr;}}
+.pc{background:var(--card);border:1px solid var(--cb);border-radius:14px;padding:16px;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:default;position:relative;overflow:hidden;}
+.pc:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,215,0,.1);border-color:rgba(255,215,0,.3);}
+.pc .ic{font-size:2.2rem;margin-bottom:8px;display:block;}
+.pc h3{font-family:'Russo One',sans-serif;font-size:.9rem;margin-bottom:4px;color:#fff;}
+.pc p{font-size:.78rem;color:var(--dim);line-height:1.4;}
+.tg{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:16px;font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.ts{background:rgba(255,59,59,.15);color:var(--red);}.tga{background:rgba(57,255,20,.12);color:var(--grn);}.tl{background:rgba(0,229,255,.12);color:var(--cyan);}.tgo{background:rgba(255,215,0,.15);color:var(--gold);}.tp{background:rgba(168,85,247,.15);color:var(--purple);}
+.pc::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;border-radius:3px 0 0 3px;}
+.cr::before{background:var(--red);}.cg::before{background:var(--grn);}.cc::before{background:var(--cyan);}.cgo::before{background:var(--gold);}.cp::before{background:var(--purple);}
+
+/* PETS */
+.pets-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.pets-grid{grid-template-columns:1fr;}}
+.pet-card{background:linear-gradient(135deg,rgba(0,229,255,.05),rgba(255,215,0,.05));border:1px solid rgba(0,229,255,.12);border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;transition:transform .2s;}
+.pet-card:hover{transform:scale(1.02);}
+.pet-card:active{transform:scale(.97);}
+.pet-card .be{font-size:3rem;flex-shrink:0;transition:transform .3s;}
+.pet-card.bounce .be{animation:pb .5s ease;}
+@keyframes pb{0%{transform:scale(1);}30%{transform:scale(1.3) rotate(-10deg);}60%{transform:scale(1.1) rotate(5deg);}100%{transform:scale(1);}}
+.pet-card h3{font-family:'Russo One',sans-serif;font-size:.95rem;margin-bottom:3px;}
+.pet-card p{font-size:.78rem;color:var(--dim);line-height:1.4;}
+.pet-card .ps{font-size:.7rem;color:var(--gold);margin-top:4px;min-height:1.2em;}
+
+/* HOCKEY */
+.hg{background:linear-gradient(180deg,#1a2a4a,#0d1b2e);border:2px solid rgba(0,229,255,.2);border-radius:18px;padding:16px;position:relative;overflow:hidden;}
+.hg-t{text-align:center;font-family:'Russo One',sans-serif;font-size:1rem;color:var(--cyan);margin-bottom:2px;position:relative;}
+.hg-sub{text-align:center;font-size:.72rem;color:var(--dim);margin-bottom:12px;position:relative;}
+.hg-f{position:relative;height:200px;border-radius:12px;background:linear-gradient(180deg,rgba(0,60,120,.3),rgba(0,40,80,.3));border:1px solid rgba(255,255,255,.08);overflow:hidden;cursor:crosshair;touch-action:none;}
+.hg-f .il{position:absolute;inset:0;pointer-events:none;}
+.hg-f .il::before{content:'';position:absolute;top:0;left:50%;width:2px;height:100%;background:rgba(255,0,0,.12);}
+.hg-f .il::after{content:'';position:absolute;top:50%;left:50%;width:70px;height:70px;margin:-35px 0 0 -35px;border:2px solid rgba(0,100,255,.12);border-radius:50%;}
+.gz{position:absolute;top:0;left:50%;transform:translateX(-50%);width:90px;height:26px;border:2px solid rgba(255,255,255,.2);border-top:none;border-radius:0 0 10px 10px;background:rgba(255,255,255,.04);}
+.gz .nt{position:absolute;inset:2px;background:repeating-linear-gradient(90deg,transparent,transparent 7px,rgba(255,255,255,.06) 7px,rgba(255,255,255,.06) 8px),repeating-linear-gradient(0deg,transparent,transparent 7px,rgba(255,255,255,.06) 7px,rgba(255,255,255,.06) 8px);}
+.pk{position:absolute;width:22px;height:22px;background:radial-gradient(circle,#333,#111);border:2px solid #555;border-radius:50%;bottom:28px;left:50%;margin-left:-11px;cursor:grab;z-index:5;}
+.pk.sh{transition:all .4s cubic-bezier(.2,.8,.3,1);}
+.gl{position:absolute;top:26px;width:28px;height:18px;background:var(--red);border-radius:4px;z-index:4;transition:left .3s ease;}
+.hg-sc{display:flex;justify-content:center;gap:24px;margin-top:12px;position:relative;}
+.hg-sc div{text-align:center;}
+.hg-sc .num{font-family:'Russo One',sans-serif;font-size:1.5rem;color:var(--gold);}
+.hg-sc .lbl{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
+.gfl{position:absolute;inset:0;background:radial-gradient(circle,rgba(255,215,0,.3),transparent);opacity:0;pointer-events:none;border-radius:12px;transition:opacity .2s;}
+.gtx{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-family:'Russo One',sans-serif;font-size:1.8rem;color:var(--gold);pointer-events:none;z-index:10;text-shadow:0 0 20px rgba(255,215,0,.8);}
+
+/* QUIZ */
+.quiz-box{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:20px;}
+.quiz-q{font-family:'Russo One',sans-serif;font-size:1rem;color:var(--gold);margin-bottom:12px;}
+.quiz-count{font-size:.7rem;color:var(--dim);margin-bottom:8px;}
+.quiz-opts{display:grid;gap:8px;}
+.quiz-opt{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 16px;cursor:pointer;font-size:.88rem;transition:all .2s;user-select:none;}
+.quiz-opt:hover{border-color:var(--gold);background:rgba(255,215,0,.06);}
+.quiz-opt.correct{background:rgba(57,255,20,.15);border-color:var(--grn);color:var(--grn);}
+.quiz-opt.wrong{background:rgba(255,59,59,.15);border-color:var(--red);color:var(--red);}
+.quiz-opt.disabled{pointer-events:none;opacity:.6;}
+.quiz-result{text-align:center;padding:20px;}
+.quiz-result .big{font-family:'Russo One',sans-serif;font-size:2.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-result p{color:var(--dim);margin-bottom:12px;}
+.quiz-btn{background:linear-gradient(135deg,var(--gold),var(--gold3));color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.85rem;padding:10px 28px;border-radius:30px;cursor:pointer;transition:transform .2s;}
+.quiz-btn:hover{transform:scale(1.06);}
+
+/* RANDOM GENERATOR */
+.rgen{text-align:center;background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:20px;}
+.rgen-text{font-family:'Russo One',sans-serif;font-size:1.1rem;color:var(--gold);margin:14px 0;min-height:2em;transition:opacity .3s;}
+.rgen-btn{background:linear-gradient(135deg,var(--cyan),#0099cc);color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.85rem;padding:10px 28px;border-radius:30px;cursor:pointer;transition:transform .2s;}
+.rgen-btn:hover{transform:scale(1.06);}
+
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;}
+.ach{background:var(--card);border:1px solid var(--cb);border-radius:12px;padding:12px 6px;text-align:center;transition:transform .3s;position:relative;}
+.ach.locked{opacity:.35;filter:grayscale(1);}
+.ach.unlocked{animation:au .6s ease;}
+@keyframes au{0%{transform:scale(1);}50%{transform:scale(1.2);box-shadow:0 0 30px rgba(255,215,0,.4);}100%{transform:scale(1);}}
+.ach:hover{transform:scale(1.06);}
+.ach .ai{font-size:1.8rem;display:block;margin-bottom:3px;}
+.ach .at{font-size:.55rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.ach .li{position:absolute;top:4px;right:4px;font-size:.6rem;opacity:.5;}
+
+/* GOLD GRID */
+.gold-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:500px){.gold-grid{grid-template-columns:1fr 1fr;}}
+.gold-item{background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(184,134,11,.04));border:1px solid rgba(255,215,0,.18);border-radius:12px;padding:14px;text-align:center;transition:transform .3s;cursor:pointer;user-select:none;}
+.gold-item:hover{transform:scale(1.06);box-shadow:0 0 20px rgba(255,215,0,.15);}
+.gold-item .gi{font-size:2rem;margin-bottom:4px;display:block;transition:transform .4s;}
+.gold-item span:last-child{font-size:.7rem;color:var(--gold);font-weight:700;}
+
+/* GARAGE */
+.gar{display:flex;gap:12px;overflow-x:auto;padding:6px 0 12px;scrollbar-width:thin;scrollbar-color:var(--gold3) var(--card);}
+.gc{flex:0 0 220px;background:var(--card);border:1px solid var(--cb);border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.gc:hover{transform:scale(1.04);box-shadow:0 8px 25px rgba(255,215,0,.15);}
+.gc img{width:100%;height:140px;object-fit:cover;display:block;border-bottom:2px solid rgba(255,215,0,.12);}
+.gc .gi{padding:12px;text-align:center;}
+.gc h4{font-family:'Russo One',sans-serif;font-size:.8rem;color:var(--gold);}
+.gc p{font-size:.7rem;color:var(--dim);margin-top:3px;}
+.gc .gfb{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,215,0,.02));border-bottom:2px solid rgba(255,215,0,.12);}
+
+/* GUESTBOOK */
+.gb{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:16px;}
+.gb-msgs{max-height:250px;overflow-y:auto;margin-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--gold3) var(--card);}
+.gb-msg{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:8px;}
+.gb-msg .name{font-weight:800;color:var(--gold);font-size:.8rem;}
+.gb-msg .text{font-size:.82rem;color:var(--dim);margin-top:3px;}
+.gb-msg .time{font-size:.6rem;color:rgba(255,255,255,.2);margin-top:4px;}
+.gb-form{display:flex;gap:8px;}
+.gb-form input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;color:var(--wh);font-family:'Nunito',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;}
+.gb-form input:focus{border-color:var(--gold);}
+.gb-form input::placeholder{color:rgba(255,255,255,.25);}
+.gb-form button{background:var(--gold);color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.75rem;padding:10px 18px;border-radius:10px;cursor:pointer;transition:transform .2s;white-space:nowrap;}
+.gb-form button:hover{transform:scale(1.05);}
+
+/* FACTS */
+.facts{list-style:none;padding:0;}
+.facts li{background:var(--card);border:1px solid var(--cb);border-radius:10px;padding:12px 16px;margin-bottom:6px;font-size:.84rem;display:flex;align-items:center;gap:10px;transition:transform .2s;}
+.facts li:hover{transform:translateX(5px);border-color:rgba(255,215,0,.25);}
+.facts .fi{font-size:1.3rem;flex-shrink:0;}
+
+/* LIKE */
+.lk{text-align:center;margin:36px 0 16px;}
+.lb{background:linear-gradient(135deg,var(--gold),var(--gold3));color:#000;border:none;font-family:'Russo One',sans-serif;font-size:1rem;padding:12px 40px;border-radius:50px;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(255,215,0,.3);position:relative;overflow:hidden;}
+.lb::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(transparent,rgba(255,255,255,.15),transparent);transform:rotate(45deg);animation:bs 3s ease-in-out infinite;}
+@keyframes bs{0%{transform:translateX(-100%) rotate(45deg);}100%{transform:translateX(100%) rotate(45deg);}}
+.lb:hover{transform:scale(1.08);box-shadow:0 6px 30px rgba(255,215,0,.45);}
+.lc{margin-top:8px;font-size:.82rem;color:var(--dim);}.lc span{color:var(--gold);font-weight:900;}
+footer{text-align:center;padding:36px 10px 28px;color:rgba(255,255,255,.2);font-size:.7rem;letter-spacing:1px;}
+footer .m{color:var(--gold);font-weight:800;}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+.rv.v{opacity:1;transform:translateY(0);}
+.hint{font-size:.75rem;color:var(--dim);margin:-6px 0 12px;padding-left:32px;}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="w">
+
+<!-- TOP BAR: Theme + Music -->
+<div class="topbar">
+  <button id="themeBtn">🌙 Тёмная</button>
+  <button id="musicBtn">🎵 Музыка</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">★ Official Page ★</div>
+  <div class="av-wrap">
+    <div class="av-glow"></div>
+    <svg id="avatarSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+      <defs>
+        <linearGradient id="capG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#FFD700"/><stop offset="50%" style="stop-color:#FFF8DC"/><stop offset="100%" style="stop-color:#DAA520"/></linearGradient>
+        <linearGradient id="chainG" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#B8860B"/><stop offset="50%" style="stop-color:#FFD700"/><stop offset="100%" style="stop-color:#B8860B"/></linearGradient>
+        <linearGradient id="jacketG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" class="jc1" style="stop-color:#1a1a2e"/><stop offset="100%" class="jc2" style="stop-color:#16213e"/></linearGradient>
+        <linearGradient id="sG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#FDBCB4"/><stop offset="100%" style="stop-color:#F4A896"/></linearGradient>
+        <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" class="bg1" style="stop-color:#0a0a0a"/><stop offset="100%" class="bg2" style="stop-color:#1a1a2e"/></linearGradient>
+        <filter id="gl"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glB"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <radialGradient id="spk" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#FFF;stop-opacity:.9"/><stop offset="100%" style="stop-color:#FFD700;stop-opacity:0"/></radialGradient>
+      </defs>
+      <rect width="400" height="500" fill="url(#bgG)" rx="20"/>
+      <circle cx="50" cy="80" r="2" fill="#FFD700" opacity=".4"><animate attributeName="opacity" values=".2;.8;.2" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="350" cy="120" r="1.5" fill="#FFD700" opacity=".3"><animate attributeName="opacity" values=".1;.7;.1" dur="1.8s" repeatCount="indefinite"/></circle>
+      <!-- Body -->
+      <path d="M120,280 Q115,290 110,340 L110,440 Q110,460 130,460 L270,460 Q290,460 290,440 L290,340 Q285,290 280,280 L240,260 Q200,250 160,260 Z" fill="url(#jacketG)" stroke="#0f1628"/>
+      <path d="M160,260 L180,310 L200,290 Z" fill="#141a30"/><path d="M240,260 L220,310 L200,290 Z" fill="#141a30"/>
+      <path d="M175,265 Q200,255 225,265 L220,310 Q200,320 180,310 Z" fill="#f5f0e8"/>
+      <circle cx="200" cy="340" r="4" fill="#2a2a4a"/><circle cx="200" cy="370" r="4" fill="#2a2a4a"/>
+      <!-- Arms -->
+      <path d="M120,290 Q100,300 90,280 L80,220 Q75,200 85,195 L95,195 Q105,198 100,220 L105,260 Q108,275 115,280" fill="url(#jacketG)"/>
+      <path d="M85,195 Q83,175 86,155 Q88,145 93,145 Q98,145 98,155 L96,180" fill="url(#sG)"/>
+      <path d="M85,198 Q78,195 76,200 Q74,206 80,208 Q85,205 87,200" fill="url(#sG)"/>
+      <rect x="84" y="168" width="12" height="8" rx="3" fill="url(#capG)" filter="url(#gl)"/>
+      <text x="87" y="175" font-size="6" fill="#8B6914" font-weight="bold" font-family="serif">$</text>
+      <rect x="78" y="208" width="28" height="8" rx="4" fill="url(#chainG)" filter="url(#gl)"/>
+      <path d="M280,290 Q300,310 305,350 L300,400 Q298,415 288,410 L285,395 Q288,350 282,310" fill="url(#jacketG)"/>
+      <ellipse cx="294" cy="415" rx="12" ry="10" fill="url(#sG)"/>
+      <!-- Chain -->
+      <path class="chain-path" d="M170,265 Q165,290 168,320 L185,370 Q195,395 200,400 Q205,395 215,370 L232,320 Q235,290 230,265" fill="none" stroke="url(#chainG)" stroke-width="5" stroke-linecap="round" filter="url(#gl)"/>
+      <!-- Pendant -->
+      <circle cx="200" cy="410" r="22" fill="url(#capG)" stroke="#B8860B" stroke-width="2" filter="url(#glB)"/>
+      <text x="200" y="418" font-size="28" fill="#8B6914" font-weight="bold" font-family="Georgia,serif" text-anchor="middle">$</text>
+      <circle cx="210" cy="400" r="4" fill="url(#spk)"><animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/></circle>
+      <!-- Head -->
+      <path d="M175,240 Q200,250 225,240 L225,265 Q200,275 175,265 Z" fill="url(#sG)"/>
+      <ellipse cx="200" cy="195" rx="62" ry="68" fill="url(#sG)"/>
+      <ellipse cx="138" cy="200" rx="12" ry="16" fill="url(#sG)"/><ellipse cx="262" cy="200" rx="12" ry="16" fill="url(#sG)"/>
+      <ellipse cx="178" cy="195" rx="14" ry="15" fill="white"/><ellipse cx="222" cy="195" rx="14" ry="15" fill="white"/>
+      <ellipse cx="180" cy="197" rx="8" ry="9" fill="#3D2B1F"/><ellipse cx="224" cy="197" rx="8" ry="9" fill="#3D2B1F"/>
+      <circle cx="183" cy="193" r="3" fill="white"/><circle cx="227" cy="193" r="3" fill="white"/>
+      <path d="M163,178 Q178,172 192,178" fill="none" stroke="#5C4033" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M208,178 Q222,172 237,178" fill="none" stroke="#5C4033" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M180,222 Q200,238 220,222" fill="none" stroke="#C4756A" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M190,225 Q200,232 210,225" fill="white" opacity=".7"/>
+      <path d="M197,205 Q195,215 192,218 Q200,221 208,218 Q205,215 203,205" fill="#E8967A" opacity=".6"/>
+      <!-- Cap -->
+      <ellipse class="cap-brim" cx="200" cy="168" rx="72" ry="12" fill="url(#capG)" stroke="#B8860B"/>
+      <path class="cap-crown" d="M135,168 Q133,130 145,115 Q170,95 200,90 Q230,95 255,115 Q267,130 265,168 Z" fill="url(#capG)" stroke="#B8860B"/>
+      <text x="200" y="152" font-size="42" fill="#8B6914" font-weight="bold" font-family="Georgia,serif" text-anchor="middle" filter="url(#gl)">$</text>
+      <circle cx="170" cy="130" r="3" fill="url(#spk)"><animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite"/></circle>
+      <circle cx="230" cy="140" r="2.5" fill="url(#spk)"><animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite"/></circle>
+      <!-- Sparkles -->
+      <text x="60" y="170" font-size="18" fill="#FFD700" filter="url(#gl)" opacity=".7">✦</text>
+      <text x="330" y="200" font-size="14" fill="#FFD700" filter="url(#gl)" opacity=".6">✦</text>
+      <!-- Name -->
+      <rect x="80" y="455" width="240" height="35" rx="17" fill="url(#capG)" stroke="#B8860B" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="200" y="478" font-size="15" fill="#1a1a2e" font-weight="bold" font-family="Georgia,serif" text-anchor="middle" letter-spacing="2">LIONEL LAUSH</text>
+    </svg>
+  </div>
+  <h1>LIONEL LAUSH</h1>
+  <div class="hero-sub">Хоккеист · Тхэквондист · Геймер · Гонщик · <span class="gold">Boss</span></div>
+  <div class="age-pill">💎 7 лет · Будущая Легенда · 💰</div>
+</section>
+
+<!-- AVATAR CUSTOMIZER -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🎨</span> Кастомайзер Аватара</div>
+  <div class="cust">
+    <div class="cust-row">
+      <label>Кепка</label>
+      <div class="cust-colors" data-target="cap">
+        <div class="cust-c active" style="background:#FFD700" data-c="#FFD700" data-c2="#DAA520"></div>
+        <div class="cust-c" style="background:#ff3b3b" data-c="#ff3b3b" data-c2="#cc2222"></div>
+        <div class="cust-c" style="background:#00e5ff" data-c="#00e5ff" data-c2="#0099aa"></div>
+        <div class="cust-c" style="background:#39ff14" data-c="#39ff14" data-c2="#22aa00"></div>
+        <div class="cust-c" style="background:#a855f7" data-c="#a855f7" data-c2="#7722cc"></div>
+      </div>
+    </div>
+    <div class="cust-row">
+      <label>Пиджак</label>
+      <div class="cust-colors" data-target="jacket">
+        <div class="cust-c active" style="background:#1a1a2e" data-c="#1a1a2e" data-c2="#16213e"></div>
+        <div class="cust-c" style="background:#2d1b1b" data-c="#2d1b1b" data-c2="#3e1616"></div>
+        <div class="cust-c" style="background:#1b2d1b" data-c="#1b2d1b" data-c2="#163e16"></div>
+        <div class="cust-c" style="background:#ffffff" data-c="#e8e8e8" data-c2="#d0d0d0"></div>
+        <div class="cust-c" style="background:#FFD700" data-c="#8B6914" data-c2="#6B4F0F"></div>
+      </div>
+    </div>
+    <div class="cust-row">
+      <label>Фон</label>
+      <div class="cust-colors" data-target="bg">
+        <div class="cust-c active" style="background:#0a0a0a" data-c="#0a0a0a" data-c2="#1a1a2e"></div>
+        <div class="cust-c" style="background:#1a0a0a" data-c="#1a0a0a" data-c2="#2e1a1a"></div>
+        <div class="cust-c" style="background:#0a1a0a" data-c="#0a1a0a" data-c2="#1a2e1a"></div>
+        <div class="cust-c" style="background:#1a1505" data-c="#1a1505" data-c2="#2e2810"></div>
+        <div class="cust-c" style="background:#0a0a1a" data-c="#0a0a1a" data-c2="#1a1a3e"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bling-div">💎 · 💰 · ✦ · 💎 · 💰 · ✦ · 💎</div>
+
+<!-- BIRTHDAY COUNTDOWN -->
+<div class="bday rv" id="bdayBox">
+  <div class="bday-label">🎂 До дня рождения осталось</div>
+  <div class="bday-timer" id="bdayTimer"></div>
+  <div class="bday-age" id="bdayAge"></div>
+</div>
+
+<!-- COUNTER -->
+<div class="ctr">
+  <div class="n" id="vc">0</div>
+  <div class="l">Фанатов посетили эту страницу</div>
+</div>
+
+<!-- STATS -->
+<div class="stats rv">
+  <div class="st"><div class="n">5</div><div class="l">Спорта</div></div>
+  <div class="st"><div class="n">3</div><div class="l">Игры</div></div>
+  <div class="st"><div class="n">2</div><div class="l">Питомца</div></div>
+  <div class="st"><div class="n">∞</div><div class="l">Золота</div></div>
+</div>
+
+<!-- HOCKEY GAME -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🏒</span> Хоккейный Буллит</div>
+  <div class="hg">
+    <div class="hg-t">🏒 Забей гол! 🏒</div>
+    <div class="hg-sub">Кликни на поле, чтобы бросить шайбу</div>
+    <div class="hg-f" id="hgF">
+      <div class="il"></div>
+      <div class="gz"><div class="nt"></div></div>
+      <div class="gl" id="goalie" style="left:calc(50% - 14px)"></div>
+      <div class="pk" id="puck"></div>
+      <div class="gfl" id="gfl"></div>
+      <div class="gtx" id="gtx">⚡ ГОООЛ! ⚡</div>
+    </div>
+    <div class="hg-sc">
+      <div><div class="num" id="hGoals">0</div><div class="lbl">Голы</div></div>
+      <div><div class="num" id="hShots">0</div><div class="lbl">Броски</div></div>
+      <div><div class="num" id="hSaves">0</div><div class="lbl">Сейвы</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🧩</span> Квиз: Угадай обо мне!</div>
+  <div class="quiz-box" id="quizBox"></div>
+</section>
+
+<!-- УВЛЕЧЕНИЯ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">⚡</span> Мои Увлечения</div>
+  <div class="g3">
+    <div class="pc cr"><span class="ic">🏒</span><h3>Хоккей</h3><p>Лёд, скорость, голы!</p><span class="tg ts">Спорт</span></div>
+    <div class="pc cr"><span class="ic">🥋</span><h3>Тхэквондо</h3><p>Путь к чёрному поясу!</p><span class="tg ts">Спорт</span></div>
+    <div class="pc cc"><span class="ic">🏊</span><h3>Плавание и ныряние</h3><p>Вода — моя стихия! Ныряю на глубину!</p><span class="tg tl">Спорт</span></div>
+    <div class="pc cr"><span class="ic">🏸</span><h3>Падел</h3><p>Ракетка, стенки, смэш — ещё один спорт в коллекции!</p><span class="tg ts">Спорт</span></div>
+    <div class="pc cg"><span class="ic">🟩</span><h3>Roblox</h3><p>Миллионы миров!</p><span class="tg tga">Игра</span></div>
+    <div class="pc cg"><span class="ic">⛏️</span><h3>Minecraft</h3><p>Построил целый город!</p><span class="tg tga">Игра</span></div>
+    <div class="pc cg"><span class="ic">🏎️</span><h3>Гонки</h3><p>Дрифт и финиш первым!</p><span class="tg tga">Игра</span></div>
+    <div class="pc cp"><span class="ic">🚴</span><h3>Велик</h3><p>Педали крутятся — скорость растёт!</p><span class="tg tp">Активности</span></div>
+    <div class="pc cp"><span class="ic">🏍️</span><h3>Мотоциклы</h3><p>Рёв мотора и ветер в лицо!</p><span class="tg tp">Активности</span></div>
+    <div class="pc cgo"><span class="ic">🏜️</span><h3>Квадроциклы</h3><p>Свои квадрики — грязь и скорость!</p><span class="tg tgo">Техника</span></div>
+    <div class="pc cgo"><span class="ic">🛻</span><h3>Баги</h3><p>Большой внедорожный багги!</p><span class="tg tgo">Техника</span></div>
+    <div class="pc cp"><span class="ic">🤸</span><h3>Батуты</h3><p>Трамплины, сальто, полёты!</p><span class="tg tp">Активности</span></div>
+    <div class="pc cc"><span class="ic">✈️</span><h3>Путешествия</h3><p>Новые страны и приключения!</p><span class="tg tl">Жизнь</span></div>
+    <div class="pc cc"><span class="ic">📚</span><h3>Школа</h3><p>Учусь и узнаю новое!</p><span class="tg tl">Жизнь</span></div>
+    <div class="pc cgo"><span class="ic">💰</span><h3>Золото</h3><p>Кепки, цепи, слитки — стиль босса!</p><span class="tg tgo">Стиль</span></div>
+  </div>
+</section>
+
+<!-- RANDOM GENERATOR -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🎲</span> Что Lionel делает прямо сейчас?</div>
+  <div class="rgen">
+    <div class="rgen-text" id="rgenText">Нажми кнопку и узнай! 👇</div>
+    <button class="rgen-btn" id="rgenBtn">🎲 Узнать!</button>
+  </div>
+</section>
+
+<!-- ПИТОМЦЫ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🐾</span> Мои Питомцы</div>
+  <p class="hint">Нажми на питомца!</p>
+  <div class="pets-grid">
+    <div class="pet-card" id="rabbitC"><div class="be">🐰</div><div><h3>Кролик</h3><p>Пушистый, прыгучий!</p><div class="ps" id="rS"></div></div></div>
+    <div class="pet-card" id="dogC"><div class="be">🐕</div><div><h3>Собака</h3><p>Верный друг!</p><div class="ps" id="dS"></div></div></div>
+  </div>
+</section>
+
+<!-- ДОСТИЖЕНИЯ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🏆</span> Достижения</div>
+  <div class="ach-grid" id="achGrid">
+    <div class="ach" data-id="visitor"><span class="ai">👀</span><span class="at">Гость</span></div>
+    <div class="ach locked" data-id="like"><span class="ai">⭐</span><span class="at">Фанат</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="goal1"><span class="ai">🏒</span><span class="at">1й гол</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="goal5"><span class="ai">🔥</span><span class="at">5 голов</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="goal10"><span class="ai">👑</span><span class="at">Король</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="pets"><span class="ai">🐾</span><span class="at">Зверолюб</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="gold"><span class="ai">💰</span><span class="at">Золотой</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="quiz"><span class="ai">🧩</span><span class="at">Квиз-про</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="custom"><span class="ai">🎨</span><span class="at">Дизайнер</span><span class="li">🔒</span></div>
+    <div class="ach locked" data-id="super"><span class="ai">💎</span><span class="at">Суперфан</span><span class="li">🔒</span></div>
+  </div>
+</section>
+
+<!-- ЗОЛОТАЯ КОЛЛЕКЦИЯ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">💰</span> Золотая Коллекция</div>
+  <p class="hint">Нажми чтобы покрутить!</p>
+  <div class="gold-grid" id="goldGrid">
+    <div class="gold-item"><span class="gi">👑</span><span>Золотая кепка</span></div>
+    <div class="gold-item"><span class="gi">💎</span><span>$ Цепь</span></div>
+    <div class="gold-item"><span class="gi">💍</span><span>$ Кольцо</span></div>
+    <div class="gold-item"><span class="gi">⌚</span><span>Браслет</span></div>
+    <div class="gold-item"><span class="gi">🏆</span><span>Слитки</span></div>
+    <div class="gold-item"><span class="gi">💰</span><span>Бриллианты</span></div>
+  </div>
+</section>
+
+<!-- ГАРАЖ МЕЧТЫ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🏁</span> Гараж Мечты</div>
+  <div class="gar">
+    <div class="gc"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=480&h=300&fit=crop" alt="Huracán" onerror="this.outerHTML='<div class=gfb>🟡</div>'"><div class="gi"><h4>Lamborghini Huracán</h4><p>640 л.с. · V10</p></div></div>
+    <div class="gc"><img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=480&h=300&fit=crop" alt="Aventador" onerror="this.outerHTML='<div class=gfb>🟠</div>'"><div class="gi"><h4>Lamborghini Aventador</h4><p>770 л.с. · V12</p></div></div>
+    <div class="gc"><img src="https://images.unsplash.com/photo-1669725083607-f5e1a2af6d4d?w=480&h=300&fit=crop" alt="Urus" onerror="this.outerHTML='<div class=gfb>🟢</div>'"><div class="gi"><h4>Lamborghini Urus</h4><p>666 л.с. · SUV</p></div></div>
+    <div class="gc"><img src="https://images.unsplash.com/photo-1695632474625-8c4ef16ffb89?w=480&h=300&fit=crop" alt="Revuelto" onerror="this.outerHTML='<div class=gfb>🔵</div>'"><div class="gi"><h4>Lamborghini Revuelto</h4><p>1015 л.с. · Гибрид</p></div></div>
+    <div class="gc"><img src="https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=480&h=300&fit=crop" alt="Sián" onerror="this.outerHTML='<div class=gfb>🟡</div>'"><div class="gi"><h4>Lamborghini Sián</h4><p>819 л.с. · Редкая</p></div></div>
+  </div>
+</section>
+
+<!-- ДОСКА СЛАВЫ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">📝</span> Доска Славы</div>
+  <div class="gb" id="gbBox">
+    <div class="gb-msgs" id="gbMsgs"></div>
+    <div class="gb-form">
+      <input type="text" id="gbName" placeholder="Твоё имя" maxlength="20">
+      <input type="text" id="gbText" placeholder="Напиши сообщение..." maxlength="100">
+      <button id="gbSend">Отправить</button>
+    </div>
+  </div>
+</section>
+
+<!-- ФАКТЫ -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🧠</span> Факты Обо Мне</div>
+  <ul class="facts">
+    <li><span class="fi">🏒</span> Играю в хоккей — лёд мой второй дом</li>
+    <li><span class="fi">🥋</span> Тхэквондо — удар ногой выше головы!</li>
+    <li><span class="fi">🏊</span> Плаваю и ныряю на глубину</li>
+    <li><span class="fi">🏸</span> Играю в падел — смэш через стенку!</li>
+    <li><span class="fi">🎮</span> Каждый день залетаю в Roblox</li>
+    <li><span class="fi">⛏️</span> В Minecraft построил целый город</li>
+    <li><span class="fi">🏜️</span> У меня свои квадроциклы!</li>
+    <li><span class="fi">🛻</span> И большой внедорожный багги!</li>
+    <li><span class="fi">🏍️</span> Обожаю мотоциклы</li>
+    <li><span class="fi">🤸</span> Люблю батуты и трамплины</li>
+    <li><span class="fi">🚴</span> Гоняю на велике</li>
+    <li><span class="fi">✈️</span> Путешествую по миру</li>
+    <li><span class="fi">📚</span> Учусь в школе</li>
+    <li><span class="fi">🐰</span> Дома кролик и собака</li>
+    <li><span class="fi">💰</span> Люблю золото и бриллианты</li>
+    <li><span class="fi">🏎️</span> Мечтаю о гараже из Lamborghini</li>
+    <li><span class="fi">👑</span> Мой стиль — золотая кепка и цепь</li>
+  </ul>
+</section>
+
+<!-- LIKE -->
+<div class="lk rv">
+  <button class="lb" id="lBtn">💎 НРАВИТСЯ! 💎</button>
+  <div class="lc">Уже нажали: <span id="lN">0</span> раз</div>
+</div>
+
+<footer>
+  <div>© 2025 Lionel Laush · <span class="m">All Rights Reserved</span> · 💰</div>
+  <div style="margin-top:5px;">Official Page · Сделано с 💎 и ❤️</div>
+</footer>
+</div>
+
+<script>
+// ===== FLOATING EMOJIS =====
+const emo=['🏒','🥋','🐰','🐕','🏎️','⛏️','🎮','⭐','💰','💎','👑','💍','🏆','🏍️','🏜️','🤸'];
+function spn(){const e=document.createElement('div');e.className='fe';e.textContent=emo[Math.floor(Math.random()*emo.length)];e.style.left=Math.random()*100+'vw';e.style.animationDuration=(13+Math.random()*14)+'s';e.style.fontSize=(1.2+Math.random()*1.3)+'rem';document.body.appendChild(e);setTimeout(()=>e.remove(),28000);}
+setInterval(spn,1800);for(let i=0;i<6;i++) setTimeout(spn,i*400);
+
+// ===== BIRTHDAY COUNTDOWN =====
+function updateBday(){
+  const bday=new Date('2018-07-28');
+  const now=new Date();
+  let nextBday=new Date(now.getFullYear(),6,28);
+  if(now>nextBday) nextBday=new Date(now.getFullYear()+1,6,28);
+  const diff=nextBday-now;
+  const d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3);
+  const age=nextBday.getFullYear()-2018;
+  document.getElementById('bdayTimer').innerHTML=
+    `<div class="bday-unit"><div class="bday-num">${d}</div><div class="bday-lbl">Дней</div></div>`+
+    `<div class="bday-unit"><div class="bday-num">${h}</div><div class="bday-lbl">Часов</div></div>`+
+    `<div class="bday-unit"><div class="bday-num">${m}</div><div class="bday-lbl">Минут</div></div>`+
+    `<div class="bday-unit"><div class="bday-num">${s}</div><div class="bday-lbl">Секунд</div></div>`;
+  document.getElementById('bdayAge').textContent=`🎉 Исполнится ${age} лет! (28 июля)`;
+}
+updateBday();setInterval(updateBday,1000);
+
+// ===== VISITOR COUNTER =====
+let vis=parseInt(localStorage.getItem('ll_v')||'1247');
+vis+=Math.floor(Math.random()*5)+1;localStorage.setItem('ll_v',vis);
+const vc=document.getElementById('vc');let cv=0;
+function ac(){if(cv<vis){cv+=Math.max(1,Math.floor((vis-cv)/10));vc.textContent=cv.toLocaleString();requestAnimationFrame(ac);}else vc.textContent=vis.toLocaleString();}
+ac();
+
+// ===== ACHIEVEMENTS =====
+let achs=JSON.parse(localStorage.getItem('ll_ach')||'{}');
+function unlock(id){
+  if(achs[id])return;achs[id]=true;localStorage.setItem('ll_ach',JSON.stringify(achs));
+  const el=document.querySelector(`.ach[data-id="${id}"]`);
+  if(el){el.classList.remove('locked');el.classList.add('unlocked');const l=el.querySelector('.li');if(l)l.remove();}
+}
+function initA(){unlock('visitor');Object.keys(achs).forEach(id=>{const el=document.querySelector(`.ach[data-id="${id}"]`);if(el&&achs[id]){el.classList.remove('locked');const l=el.querySelector('.li');if(l)l.remove();}});}
+initA();
+
+// ===== LIKE =====
+let lk=parseInt(localStorage.getItem('ll_lk')||'891');
+document.getElementById('lN').textContent=lk.toLocaleString();
+document.getElementById('lBtn').addEventListener('click',function(){
+  lk++;localStorage.setItem('ll_lk',lk);document.getElementById('lN').textContent=lk.toLocaleString();
+  this.style.transform='scale(1.2)';setTimeout(()=>this.style.transform='',200);
+  unlock('like');if(lk>=900)unlock('super');
+  for(let i=0;i<15;i++){const c=document.createElement('div');c.textContent=['⭐','💎','💰','👑','💍','🏆'][Math.floor(Math.random()*6)];c.style.cssText=`position:fixed;font-size:1.5rem;pointer-events:none;z-index:99;left:${50+Math.random()*10-5}vw;top:50vh;transition:all 1.2s ease-out;opacity:1;`;document.body.appendChild(c);requestAnimationFrame(()=>{c.style.left=`${25+Math.random()*50}vw`;c.style.top=`${5+Math.random()*35}vh`;c.style.opacity='0';c.style.transform=`rotate(${Math.random()*360}deg) scale(.2)`;});setTimeout(()=>c.remove(),1400);}
+});
+
+// ===== PETS =====
+const pp={r:['Прыг-прыг! 🥕','*жуёт морковку*','*шевелит носиком*','*прыгает от радости*'],d:['Гав-гав! 🎾','*виляет хвостом*','*приносит мячик*','*лижет руку*','Пойдём гулять!']};
+let pc={r:0,d:0};
+document.getElementById('rabbitC').addEventListener('click',function(){this.classList.remove('bounce');void this.offsetWidth;this.classList.add('bounce');pc.r++;document.getElementById('rS').textContent=pp.r[Math.floor(Math.random()*pp.r.length)];if(pc.r>=1&&pc.d>=1)unlock('pets');});
+document.getElementById('dogC').addEventListener('click',function(){this.classList.remove('bounce');void this.offsetWidth;this.classList.add('bounce');pc.d++;document.getElementById('dS').textContent=pp.d[Math.floor(Math.random()*pp.d.length)];if(pc.r>=1&&pc.d>=1)unlock('pets');});
+
+// ===== GOLD SPIN =====
+let gc=0;
+document.getElementById('goldGrid').addEventListener('click',function(ev){const it=ev.target.closest('.gold-item');if(!it)return;gc++;const gi=it.querySelector('.gi');gi.style.transform='rotate(360deg) scale(1.3)';setTimeout(()=>gi.style.transform='',400);if(gc>=6)unlock('gold');});
+
+// ===== HOCKEY GAME =====
+const field=document.getElementById('hgF'),puck=document.getElementById('puck'),goalie=document.getElementById('goalie'),gfl=document.getElementById('gfl'),gtx=document.getElementById('gtx');
+let hG=parseInt(localStorage.getItem('ll_hg')||'0'),hS=parseInt(localStorage.getItem('ll_hs')||'0'),hSv=parseInt(localStorage.getItem('ll_hsv')||'0'),canS=true;
+document.getElementById('hGoals').textContent=hG;document.getElementById('hShots').textContent=hS;document.getElementById('hSaves').textContent=hSv;
+if(hG>=1)unlock('goal1');if(hG>=5)unlock('goal5');if(hG>=10)unlock('goal10');
+let gDir=1,gX=50;
+function mg(){gX+=gDir*(1.5+Math.random()*1.5);if(gX>72)gDir=-1;if(gX<28)gDir=1;goalie.style.left=gX+'%';requestAnimationFrame(mg);}
+mg();
+field.addEventListener('click',function(ev){
+  if(!canS)return;canS=false;hS++;document.getElementById('hShots').textContent=hS;localStorage.setItem('ll_hs',hS);
+  const r=field.getBoundingClientRect(),cX=((ev.clientX-r.left)/r.width)*100;
+  puck.classList.add('sh');puck.style.bottom='calc(100% - 38px)';puck.style.left=cX+'%';puck.style.marginLeft='-11px';puck.style.transform='scale(.6)';
+  setTimeout(()=>{
+    const gL=50-11,gR=50+11,goL=gX-4,goR=gX+7;
+    if(cX>=gL&&cX<=gR&&!(cX>=goL&&cX<=goR)){
+      hG++;document.getElementById('hGoals').textContent=hG;localStorage.setItem('ll_hg',hG);
+      gfl.style.opacity='1';gtx.style.transform='translate(-50%,-50%) scale(1)';gtx.style.opacity='1';
+      setTimeout(()=>{gfl.style.opacity='0';gtx.style.transform='translate(-50%,-50%) scale(0)';gtx.style.opacity='0';},800);
+      if(hG>=1)unlock('goal1');if(hG>=5)unlock('goal5');if(hG>=10)unlock('goal10');
+    } else {hSv++;document.getElementById('hSaves').textContent=hSv;localStorage.setItem('ll_hsv',hSv);}
+    setTimeout(()=>{puck.classList.remove('sh');puck.style.bottom='28px';puck.style.left='50%';puck.style.marginLeft='-11px';puck.style.transform='scale(1)';canS=true;},500);
+  },400);
+});
+
+// ===== QUIZ =====
+const quizData=[
+  {q:'Какой спорт Lionel любит больше всего?',o:['Футбол','Хоккей','Баскетбол','Теннис'],a:1},
+  {q:'Какое боевое искусство практикует Lionel?',o:['Карате','Дзюдо','Тхэквондо','Бокс'],a:2},
+  {q:'Какой питомец живёт у Lionel дома?',o:['Кот','Хомяк','Попугай','Кролик'],a:3},
+  {q:'Какую марку машин обожает Lionel?',o:['Ferrari','Lamborghini','Porsche','BMW'],a:1},
+  {q:'В какую игру Lionel строит города?',o:['Fortnite','Roblox','Minecraft','Among Us'],a:2},
+  {q:'Что у Lionel на кепке?',o:['Звезда','Знак $','Сердечко','Молния'],a:1},
+  {q:'На чём Lionel гоняет по бездорожью?',o:['Самокат','Лошадь','Квадроцикл','Ролики'],a:2},
+  {q:'Когда у Lionel день рождения?',o:['1 января','28 июля','15 марта','31 декабря'],a:1},
+  {q:'В какой спорт с ракеткой играет Lionel?',o:['Теннис','Бадминтон','Падел','Сквош'],a:2},
+];
+let qIdx=0,qScore=0,qAnswered=false;
+function renderQ(){
+  const qb=document.getElementById('quizBox');
+  if(qIdx>=quizData.length){
+    const pct=Math.round(qScore/quizData.length*100);
+    qb.innerHTML=`<div class="quiz-result"><div class="big">${pct}%</div><p>Ты знаешь Lionel на ${pct}%!<br>Правильных: ${qScore} из ${quizData.length}</p><button class="quiz-btn" onclick="qIdx=0;qScore=0;renderQ();">🔄 Заново</button></div>`;
+    if(pct>=75)unlock('quiz');
+    return;
+  }
+  const d=quizData[qIdx];qAnswered=false;
+  qb.innerHTML=`<div class="quiz-count">Вопрос ${qIdx+1} из ${quizData.length}</div><div class="quiz-q">${d.q}</div><div class="quiz-opts">${d.o.map((o,i)=>`<div class="quiz-opt" data-i="${i}">${o}</div>`).join('')}</div>`;
+  qb.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click',function(){
+      if(qAnswered)return;qAnswered=true;
+      const ci=parseInt(this.dataset.i),correct=ci===d.a;
+      if(correct){this.classList.add('correct');qScore++;}
+      else{this.classList.add('wrong');qb.querySelectorAll('.quiz-opt')[d.a].classList.add('correct');}
+      qb.querySelectorAll('.quiz-opt').forEach(o=>o.classList.add('disabled'));
+      setTimeout(()=>{qIdx++;renderQ();},1200);
+    });
+  });
+}
+renderQ();
+
+// ===== RANDOM GENERATOR =====
+const rActs=['🏒 Забивает голы на тренировке','🥋 Отрабатывает удары в тхэквондо','🎮 Залетает в Roblox','⛏️ Строит замок в Minecraft','🏎️ Гоняет в гоночном симуляторе','🐰 Гладит кролика','🐕 Играет с собакой','🏜️ Гоняет на квадроцикле','🛻 Рулит на багги по бездорожью','🤸 Прыгает на батуте','🚴 Гоняет на велике','🏊 Ныряет на глубину','🏸 Играет в падел — смэш!','✈️ Мечтает о путешествии','💰 Примеряет золотую цепь','📚 Делает домашку','🏍️ Мечтает о мотоцикле','👑 Просто выглядит как босс','💎 Считает свои бриллианты','🏎️ Выбирает цвет Lamborghini','🎂 Ждёт день рождения'];
+const rgenText=document.getElementById('rgenText');
+document.getElementById('rgenBtn').addEventListener('click',function(){
+  rgenText.style.opacity='0';
+  setTimeout(()=>{rgenText.textContent=rActs[Math.floor(Math.random()*rActs.length)];rgenText.style.opacity='1';},300);
+});
+
+// ===== AVATAR CUSTOMIZER =====
+let custClicks=0;
+document.querySelectorAll('.cust-colors').forEach(row=>{
+  row.querySelectorAll('.cust-c').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      row.querySelectorAll('.cust-c').forEach(b=>b.classList.remove('active'));
+      this.classList.add('active');
+      const t=row.dataset.target,c1=this.dataset.c,c2=this.dataset.c2;
+      const svg=document.getElementById('avatarSvg');
+      if(t==='cap'){svg.querySelector('#capG stop:first-child').style.stopColor=c1;svg.querySelector('#capG stop:last-child').style.stopColor=c2;}
+      if(t==='jacket'){svg.querySelectorAll('.jc1').forEach(s=>s.style.stopColor=c1);svg.querySelectorAll('.jc2').forEach(s=>s.style.stopColor=c2);}
+      if(t==='bg'){svg.querySelectorAll('.bg1').forEach(s=>s.style.stopColor=c1);svg.querySelectorAll('.bg2').forEach(s=>s.style.stopColor=c2);}
+      custClicks++;if(custClicks>=3)unlock('custom');
+    });
+  });
+});
+
+// ===== THEME SWITCHER =====
+const themeBtn=document.getElementById('themeBtn');
+let isGold=false;
+themeBtn.addEventListener('click',()=>{
+  isGold=!isGold;
+  document.body.classList.toggle('gold-theme',isGold);
+  themeBtn.textContent=isGold?'🌑 Тёмная':'🌟 Золотая';
+  themeBtn.classList.toggle('active',isGold);
+});
+
+// ===== MUSIC (Web Audio API beat) =====
+let audioCtx,musicPlaying=false;
+const musicBtn=document.getElementById('musicBtn');
+function startMusic(){
+  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  const bpm=100,beat=60/bpm;
+  let t=audioCtx.currentTime;
+  function schedule(){
+    for(let i=0;i<16;i++){
+      // Kick
+      if(i%4===0){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(30,t+.15);g.gain.setValueAtTime(.6,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+.2);}
+      // Hi-hat
+      if(i%2===0){const buf=audioCtx.createBuffer(1,audioCtx.sampleRate*.05,audioCtx.sampleRate),d=buf.getChannelData(0);for(let j=0;j<d.length;j++)d[j]=(Math.random()*2-1)*Math.pow(1-j/d.length,3);const s=audioCtx.createBufferSource(),g=audioCtx.createGain();s.buffer=buf;g.gain.value=.15;s.connect(g);g.connect(audioCtx.destination);s.start(t);}
+      // Snare
+      if(i%8===4){const buf=audioCtx.createBuffer(1,audioCtx.sampleRate*.1,audioCtx.sampleRate),d=buf.getChannelData(0);for(let j=0;j<d.length;j++)d[j]=(Math.random()*2-1)*Math.pow(1-j/d.length,2);const s=audioCtx.createBufferSource(),g=audioCtx.createGain();s.buffer=buf;g.gain.value=.3;s.connect(g);g.connect(audioCtx.destination);s.start(t);const o=audioCtx.createOscillator(),og=audioCtx.createGain();o.frequency.value=200;og.gain.setValueAtTime(.3,t);og.gain.exponentialRampToValueAtTime(.001,t+.1);o.connect(og);og.connect(audioCtx.destination);o.start(t);o.stop(t+.1);}
+      // Bass note
+      if(i%8===0){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sawtooth';o.frequency.value=[55,65,73,55][Math.floor(i/8)%4];g.gain.setValueAtTime(.12,t);g.gain.setValueAtTime(.001,t+beat*1.8);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+beat*2);}
+      t+=beat/4;
+    }
+    if(musicPlaying)setTimeout(schedule,beat*4*1000*.9);
+  }
+  schedule();
+}
+musicBtn.addEventListener('click',()=>{
+  musicPlaying=!musicPlaying;
+  musicBtn.textContent=musicPlaying?'🔇 Стоп':'🎵 Музыка';
+  musicBtn.classList.toggle('active',musicPlaying);
+  if(musicPlaying)startMusic();
+});
+
+// ===== GUESTBOOK =====
+const defaultMsgs=[
+  {n:'Мама',t:'Самый лучший сын на свете! ❤️',ts:'2025-01-15'},
+  {n:'Папа',t:'Будущий чемпион! 🏆',ts:'2025-01-15'},
+  {n:'Тренер',t:'Отличный бросок, Lionel! 🏒',ts:'2025-01-20'},
+  {n:'Друг Макс',t:'Давай в Roblox зайдём! 🎮',ts:'2025-02-01'},
+];
+let msgs=JSON.parse(localStorage.getItem('ll_gb')||'null')||defaultMsgs;
+function renderGB(){
+  const el=document.getElementById('gbMsgs');
+  el.innerHTML=msgs.map(m=>`<div class="gb-msg"><div class="name">${m.n}</div><div class="text">${m.t}</div><div class="time">${m.ts}</div></div>`).join('');
+  el.scrollTop=el.scrollHeight;
+}
+renderGB();
+document.getElementById('gbSend').addEventListener('click',()=>{
+  const n=document.getElementById('gbName').value.trim(),t=document.getElementById('gbText').value.trim();
+  if(!n||!t)return;
+  const now=new Date().toISOString().split('T')[0];
+  msgs.push({n,t,ts:now});localStorage.setItem('ll_gb',JSON.stringify(msgs));
+  document.getElementById('gbName').value='';document.getElementById('gbText').value='';
+  renderGB();
+});
+
+// ===== SCROLL REVEAL =====
+const rv=document.querySelectorAll('.rv');
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target);}});},{threshold:.12});
+rv.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
