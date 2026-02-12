@@ -238,6 +238,58 @@ footer .m{color:var(--gold);font-weight:800;}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
 .rv.v{opacity:1;transform:translateY(0);}
 .hint{font-size:.75rem;color:var(--dim);margin:-6px 0 12px;padding-left:32px;}
+
+/* SPIN WHEEL */
+.wheel-wrap{text-align:center;background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:20px;position:relative;}
+.wheel-container{position:relative;width:260px;height:260px;margin:0 auto 16px;}
+.wheel-canvas{width:260px;height:260px;border-radius:50%;border:4px solid var(--gold);box-shadow:0 0 30px rgba(255,215,0,.2);}
+.wheel-pointer{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:2rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));z-index:2;}
+.wheel-btn{background:linear-gradient(135deg,var(--gold),var(--gold3));color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.9rem;padding:12px 32px;border-radius:30px;cursor:pointer;transition:transform .2s;}
+.wheel-btn:hover{transform:scale(1.06);}
+.wheel-btn:disabled{opacity:.5;cursor:not-allowed;}
+.wheel-result{font-family:'Russo One',sans-serif;font-size:1.1rem;color:var(--gold);margin-top:12px;min-height:1.5em;transition:opacity .3s;}
+
+/* REACTION TEST */
+.react-box{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:20px;text-align:center;}
+.react-area{width:100%;height:180px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;font-family:'Russo One',sans-serif;font-size:1.1rem;transition:background .15s;margin-bottom:12px;}
+.react-area.waiting{background:rgba(255,59,59,.15);color:var(--red);border:2px solid rgba(255,59,59,.2);}
+.react-area.ready{background:rgba(57,255,20,.2);color:var(--grn);border:2px solid rgba(57,255,20,.3);}
+.react-area.idle{background:rgba(255,215,0,.08);color:var(--gold);border:2px solid var(--cb);}
+.react-area.result{background:rgba(0,229,255,.1);color:var(--cyan);border:2px solid rgba(0,229,255,.2);}
+.react-area.toosoon{background:rgba(255,59,59,.2);color:var(--red);border:2px solid rgba(255,59,59,.3);}
+.react-best{font-size:.8rem;color:var(--dim);margin-top:8px;}
+.react-best span{color:var(--gold);font-weight:800;}
+
+/* SECRET CODE */
+.secret-box{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:20px;text-align:center;}
+.secret-input-wrap{display:flex;gap:8px;justify-content:center;margin:12px 0;}
+.secret-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;color:var(--wh);font-family:'Russo One',sans-serif;font-size:1rem;text-align:center;width:180px;outline:none;letter-spacing:4px;transition:border-color .2s;}
+.secret-input:focus{border-color:var(--gold);}
+.secret-go{background:var(--gold);color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.8rem;padding:10px 18px;border-radius:10px;cursor:pointer;transition:transform .2s;}
+.secret-go:hover{transform:scale(1.05);}
+.secret-hint{font-size:.75rem;color:var(--dim);margin-bottom:8px;}
+.secret-msg{font-size:.85rem;color:var(--red);margin-top:8px;min-height:1.2em;}
+.secret-content{display:none;margin-top:16px;padding:16px;background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(168,85,247,.06));border:1px solid rgba(255,215,0,.2);border-radius:12px;text-align:center;animation:au .6s ease;}
+.secret-content h3{font-family:'Russo One',sans-serif;color:var(--gold);margin-bottom:8px;}
+.secret-content p{font-size:.85rem;color:var(--dim);line-height:1.5;}
+.secret-content .se{font-size:2.5rem;margin-bottom:8px;display:block;}
+
+/* MEMORY GAME */
+.mem-box{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:16px;}
+.mem-stats{display:flex;justify-content:center;gap:20px;margin-bottom:12px;}
+.mem-stats div{text-align:center;}
+.mem-stats .num{font-family:'Russo One',sans-serif;font-size:1.3rem;color:var(--gold);}
+.mem-stats .lbl{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:0 auto;}
+.mem-card{aspect-ratio:1;background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,215,0,.04));border:2px solid rgba(255,215,0,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;user-select:none;transition:transform .3s,background .3s,border-color .3s;}
+.mem-card:hover{transform:scale(1.05);border-color:rgba(255,215,0,.3);}
+.mem-card.hidden-card{background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,215,0,.04));}
+.mem-card.hidden-card::after{content:'❓';font-size:1.5rem;}
+.mem-card.flipped{background:rgba(0,229,255,.1);border-color:rgba(0,229,255,.3);transform:scale(1.05);}
+.mem-card.matched{background:rgba(57,255,20,.1);border-color:rgba(57,255,20,.3);opacity:.7;}
+.mem-reset{display:block;margin:12px auto 0;background:linear-gradient(135deg,var(--cyan),#0099cc);color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.8rem;padding:8px 24px;border-radius:20px;cursor:pointer;transition:transform .2s;}
+.mem-reset:hover{transform:scale(1.06);}
+.mem-win{text-align:center;font-family:'Russo One',sans-serif;color:var(--gold);font-size:1.1rem;margin-top:10px;min-height:1.4em;}
 </style>
 </head>
 <body>
@@ -435,6 +487,60 @@ footer .m{color:var(--gold);font-weight:800;}
   <div class="rgen">
     <div class="rgen-text" id="rgenText">Hit the button to find out! 👇</div>
     <button class="rgen-btn" id="rgenBtn">🎲 Find Out!</button>
+  </div>
+</section>
+
+<!-- SPIN WHEEL -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🎰</span> Wheel of Fortune</div>
+  <div class="wheel-wrap">
+    <div class="wheel-container">
+      <div class="wheel-pointer">🔻</div>
+      <canvas class="wheel-canvas" id="wheelCanvas" width="260" height="260"></canvas>
+    </div>
+    <button class="wheel-btn" id="wheelBtn">🎰 SPIN!</button>
+    <div class="wheel-result" id="wheelResult"></div>
+  </div>
+</section>
+
+<!-- REACTION TEST -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">⚡</span> Reaction Speed Test</div>
+  <div class="react-box">
+    <div class="react-area idle" id="reactArea">Click to start! ⚡</div>
+    <div class="react-best">Best time: <span id="reactBest">—</span></div>
+  </div>
+</section>
+
+<!-- SECRET CODE -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🔐</span> Secret Room</div>
+  <div class="secret-box">
+    <div class="secret-hint">Enter the secret code to unlock hidden content!</div>
+    <div class="secret-input-wrap">
+      <input type="text" class="secret-input" id="secretInput" placeholder="••••" maxlength="10" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button class="secret-go" id="secretGo">🔓 Unlock</button>
+    </div>
+    <div class="secret-msg" id="secretMsg"></div>
+    <div class="secret-content" id="secretContent">
+      <span class="se">🏆💎👑</span>
+      <h3>You found the secret!</h3>
+      <p>You are a TRUE fan of Lionel Laush!<br>Only the coolest people know this code! 🔥<br><br>Secret fact: Lionel's first hockey goal was at age 5!<br>And his dream is to have a gold Lamborghini! 💰🏎️</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY GAME -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🃏</span> Memory Game — Find the Pairs!</div>
+  <div class="mem-box">
+    <div class="mem-stats">
+      <div><div class="num" id="memMoves">0</div><div class="lbl">Moves</div></div>
+      <div><div class="num" id="memPairs">0</div><div class="lbl">Pairs</div></div>
+    </div>
+    <div class="mem-grid" id="memGrid"></div>
+    <div class="mem-win" id="memWin"></div>
+    <button class="mem-reset" id="memReset">🔄 New Game</button>
   </div>
 </section>
 
@@ -741,6 +847,167 @@ document.getElementById('gbSend').addEventListener('click',()=>{const n=document
 const rv=document.querySelectorAll('.rv');
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target);}});},{threshold:.12});
 rv.forEach(el=>io.observe(el));
+
+/* ===== SPIN WHEEL ===== */
+(function(){
+  const prizes=['🏒 Hockey Star!','💎 Diamond!','🏎️ Lamborghini!','👑 Gold Crown!','🐰 Pet Snowflake!','🎮 Roblox VIP!','💰 Gold Bar!','⚡ Super Speed!'];
+  const colors=['#FFD700','#1a1a2e','#ff3b3b','#1a1a2e','#00e5ff','#1a1a2e','#a855f7','#1a1a2e'];
+  const textColors=['#000','#FFD700','#fff','#FFD700','#000','#FFD700','#fff','#FFD700'];
+  const canvas=document.getElementById('wheelCanvas');
+  const ctx=canvas.getContext('2d');
+  const n=prizes.length, arc=2*Math.PI/n;
+  let angle=0,spinning=false;
+
+  function drawWheel(){
+    ctx.clearRect(0,0,260,260);
+    for(let i=0;i<n;i++){
+      const a=angle+i*arc;
+      ctx.beginPath();ctx.moveTo(130,130);ctx.arc(130,130,126,a,a+arc);ctx.closePath();
+      ctx.fillStyle=colors[i];ctx.fill();
+      ctx.strokeStyle='rgba(255,215,0,.3)';ctx.lineWidth=1;ctx.stroke();
+      ctx.save();ctx.translate(130,130);ctx.rotate(a+arc/2);
+      ctx.fillStyle=textColors[i];ctx.font='bold 11px Nunito';ctx.textAlign='center';
+      ctx.fillText(prizes[i].split(' ').slice(1).join(' '),65,4);
+      ctx.fillStyle=textColors[i];ctx.font='16px serif';ctx.fillText(prizes[i].split(' ')[0],65,-10);
+      ctx.restore();
+    }
+    ctx.beginPath();ctx.arc(130,130,20,0,2*Math.PI);ctx.fillStyle='#FFD700';ctx.fill();
+    ctx.strokeStyle='#B8860B';ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle='#000';ctx.font='bold 14px Russo One';ctx.textAlign='center';ctx.fillText('GO',130,135);
+  }
+  drawWheel();
+
+  document.getElementById('wheelBtn').addEventListener('click',function(){
+    if(spinning)return;spinning=true;this.disabled=true;
+    document.getElementById('wheelResult').textContent='';
+    const spins=5+Math.random()*5;
+    const target=spins*2*Math.PI+Math.random()*2*Math.PI;
+    const duration=4000;const start=performance.now();
+    function animate(now){
+      const t=Math.min((now-start)/duration,1);
+      const ease=1-Math.pow(1-t,3);
+      angle=ease*target;
+      drawWheel();
+      if(t<1){requestAnimationFrame(animate);}
+      else{
+        const finalAngle=(angle%(2*Math.PI));
+        const idx=Math.floor((2*Math.PI-finalAngle%(2*Math.PI))/(2*Math.PI)*n)%n;
+        document.getElementById('wheelResult').textContent='🎉 '+prizes[idx];
+        spinning=false;document.getElementById('wheelBtn').disabled=false;
+      }
+    }
+    requestAnimationFrame(animate);
+  });
+})();
+
+/* ===== REACTION TEST ===== */
+(function(){
+  const area=document.getElementById('reactArea');
+  const bestEl=document.getElementById('reactBest');
+  let state='idle',timer=null,startTime=0;
+  let best=parseInt(localStorage.getItem('ll_react')||'9999');
+  if(best<9999)bestEl.textContent=best+'ms';
+
+  area.addEventListener('click',function(){
+    if(state==='idle'){
+      state='waiting';area.className='react-area waiting';area.textContent='Wait for GREEN...';
+      timer=setTimeout(()=>{
+        state='ready';area.className='react-area ready';area.textContent='CLICK NOW! ⚡';
+        startTime=performance.now();
+      },1500+Math.random()*3000);
+    }else if(state==='waiting'){
+      clearTimeout(timer);state='idle';
+      area.className='react-area toosoon';area.textContent='Too soon! 😅 Click to retry';
+      setTimeout(()=>{state='idle';area.className='react-area idle';area.textContent='Click to start! ⚡';},1500);
+    }else if(state==='ready'){
+      const ms=Math.round(performance.now()-startTime);
+      state='idle';area.className='react-area result';
+      let msg='';
+      if(ms<200)msg='🔥 SUPERHUMAN! '+ms+'ms';
+      else if(ms<300)msg='⚡ Lightning fast! '+ms+'ms';
+      else if(ms<400)msg='🏎️ Fast! '+ms+'ms';
+      else if(ms<500)msg='👍 Good! '+ms+'ms';
+      else msg='🐢 Keep practicing! '+ms+'ms';
+      area.textContent=msg;
+      if(ms<best){best=ms;localStorage.setItem('ll_react',best);bestEl.textContent=best+'ms';}
+      setTimeout(()=>{area.className='react-area idle';area.textContent='Click to try again! ⚡';},2500);
+    }
+  });
+})();
+
+/* ===== SECRET CODE ===== */
+(function(){
+  const codes=['lionel','laush','gold','boss','hockey','perfected'];
+  document.getElementById('secretGo').addEventListener('click',tryCode);
+  document.getElementById('secretInput').addEventListener('keydown',function(e){if(e.key==='Enter')tryCode();});
+  function tryCode(){
+    const input=document.getElementById('secretInput').value.trim().toLowerCase();
+    const msg=document.getElementById('secretMsg');
+    const content=document.getElementById('secretContent');
+    if(!input){msg.textContent='Enter a code!';msg.style.color='var(--red)';return;}
+    if(codes.includes(input)){
+      msg.textContent='';content.style.display='block';
+      msg.style.color='var(--grn)';msg.textContent='🔓 Code accepted!';
+      unlock('super');
+    }else{
+      msg.style.color='var(--red)';
+      const hints=['Nope! Try again 🤔','Wrong code! Think harder 💭','Hint: it\'s something Lionel loves 👀','Almost! Keep trying 🔥'];
+      msg.textContent=hints[Math.floor(Math.random()*hints.length)];
+      content.style.display='none';
+    }
+  }
+})();
+
+/* ===== MEMORY GAME ===== */
+(function(){
+  const emojis=['🏒','🥋','🐰','🐕','🏎️','💎','👑','💰'];
+  let cards=[],flipped=[],matched=[],moves=0,locked=false;
+
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+  function initGame(){
+    cards=shuffle([...emojis,...emojis]);flipped=[];matched=[];moves=0;locked=false;
+    document.getElementById('memMoves').textContent='0';
+    document.getElementById('memPairs').textContent='0';
+    document.getElementById('memWin').textContent='';
+    const grid=document.getElementById('memGrid');
+    grid.innerHTML=cards.map((e,i)=>`<div class="mem-card hidden-card" data-idx="${i}"></div>`).join('');
+    grid.querySelectorAll('.mem-card').forEach(card=>{
+      card.addEventListener('click',function(){
+        if(locked)return;
+        const idx=parseInt(this.dataset.idx);
+        if(flipped.includes(idx)||matched.includes(idx))return;
+        this.textContent=cards[idx];this.classList.remove('hidden-card');this.classList.add('flipped');
+        flipped.push(idx);
+        if(flipped.length===2){
+          moves++;document.getElementById('memMoves').textContent=moves;
+          locked=true;
+          const[a,b]=flipped;
+          if(cards[a]===cards[b]){
+            matched.push(a,b);
+            setTimeout(()=>{
+              grid.children[a].classList.remove('flipped');grid.children[a].classList.add('matched');
+              grid.children[b].classList.remove('flipped');grid.children[b].classList.add('matched');
+              document.getElementById('memPairs').textContent=matched.length/2;
+              flipped=[];locked=false;
+              if(matched.length===cards.length){
+                document.getElementById('memWin').textContent='🏆 You won in '+moves+' moves!';
+              }
+            },400);
+          }else{
+            setTimeout(()=>{
+              grid.children[a].textContent='';grid.children[a].classList.remove('flipped');grid.children[a].classList.add('hidden-card');
+              grid.children[b].textContent='';grid.children[b].classList.remove('flipped');grid.children[b].classList.add('hidden-card');
+              flipped=[];locked=false;
+            },800);
+          }
+        }
+      });
+    });
+  }
+  initGame();
+  document.getElementById('memReset').addEventListener('click',initGame);
+})();
 </script>
 </body>
 </html>
