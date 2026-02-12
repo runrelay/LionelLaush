@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lionellaush.com/sitemap.xml
