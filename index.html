@@ -902,8 +902,8 @@ rv.forEach(el=>io.observe(el));
       drawWheel();
       if(t<1){requestAnimationFrame(animate);}
       else{
-        const finalAngle=(angle%(2*Math.PI));
-        const idx=Math.floor((2*Math.PI-finalAngle%(2*Math.PI))/(2*Math.PI)*n)%n;
+        const normalizedAngle=((Math.PI*1.5-angle)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+        const idx=Math.floor(normalizedAngle/arc)%n;
         document.getElementById('wheelResult').textContent='🎉 '+prizes[idx];
         spinning=false;document.getElementById('wheelBtn').disabled=false;
       }
