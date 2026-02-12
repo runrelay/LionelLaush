@@ -443,8 +443,8 @@ footer .m{color:var(--gold);font-weight:800;}
   <div class="sec-t"><span class="e">🐾</span> My Pets</div>
   <p class="hint">Tap a pet!</p>
   <div class="pets-grid">
-    <div class="pet-card" id="rabbitC"><div class="be">🐰</div><div><h3>Rabbit</h3><p>Fluffy and bouncy!</p><div class="ps" id="rS"></div></div></div>
-    <div class="pet-card" id="dogC"><div class="be">🐕</div><div><h3>Dog</h3><p>Best friend forever!</p><div class="ps" id="dS"></div></div></div>
+    <div class="pet-card" id="rabbitC"><div class="be">🐰</div><div><h3>Snowflake</h3><p>Fluffy and bouncy rabbit!</p><div class="ps" id="rS"></div></div></div>
+    <div class="pet-card" id="dogC"><div class="be">🐕</div><div><h3>Perry</h3><p>Best friend forever!</p><div class="ps" id="dS"></div></div></div>
   </div>
 </section>
 
@@ -487,7 +487,7 @@ footer .m{color:var(--gold);font-weight:800;}
     <div class="gc"><img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=480&h=300&fit=crop" alt="Lamborghini Aventador"><div class="gi"><h4>Lamborghini Aventador</h4><p>770 HP · V12 · Legend</p></div></div>
     <div class="gc"><img src="https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=480&h=300&fit=crop" alt="Bugatti Chiron Sport"><div class="gi"><h4>Bugatti Chiron Sport</h4><p>1600 HP · 304 mph</p></div></div>
     <div class="gc"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=480&h=300&fit=crop" alt="Lamborghini Huracán"><div class="gi"><h4>Lamborghini Huracán</h4><p>640 HP · V10 · 2.9 sec</p></div></div>
-    <div class="gc"><img src="https://images.unsplash.com/photo-1525609004556-c46c5d6927d3?w=480&h=300&fit=crop" alt="Ferrari"><div class="gi"><h4>Ferrari 488 GTB</h4><p>670 HP · V8 Twin Turbo</p></div></div>
+    <div class="gc"><img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=480&h=300&fit=crop" alt="Ferrari 488 GTB"><div class="gi"><h4>Ferrari 488 GTB</h4><p>670 HP · V8 Twin Turbo</p></div></div>
     <div class="gc"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=480&h=300&fit=crop" alt="Porsche 911"><div class="gi"><h4>Porsche 911</h4><p>580 HP · Classic</p></div></div>
   </div>
 </section>
@@ -522,7 +522,7 @@ footer .m{color:var(--gold);font-weight:800;}
     <li><span class="fi">🚴</span> I ride my bike fast</li>
     <li><span class="fi">✈️</span> I travel around the world</li>
     <li><span class="fi">📚</span> I go to school</li>
-    <li><span class="fi">🐰</span> I have a rabbit and a dog at home</li>
+    <li><span class="fi">🐰</span> I have a rabbit named Snowflake and a dog named Perry</li>
     <li><span class="fi">💰</span> I love gold and diamonds</li>
     <li><span class="fi">🏎️</span> I dream of a garage full of Lamborghinis and Bugattis</li>
     <li><span class="fi">👑</span> My style — gold cap and chain</li>
@@ -566,21 +566,23 @@ updateBday();setInterval(updateBday,1000);
 const SB_URL='https://yhpsvfimbxeukhmwpwdo.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlocHN2ZmltYnhldWtobXdwd2RvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5MTk5ODcsImV4cCI6MjA4NjQ5NTk4N30.B-RzWCCcKPBvrDUhgDr2q5Xbn0dHwWUVaKtMyELzbkI';
 const vc=document.getElementById('vc');
-let vis=0;
 function animateCount(target){let cv=0;function ac(){if(cv<target){cv+=Math.max(1,Math.floor((target-cv)/10));vc.textContent=cv.toLocaleString();requestAnimationFrame(ac);}else vc.textContent=target.toLocaleString();}ac();}
 async function trackVisitor(){
+  let vis=1247;
   try{
-    const headers={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation'};
-    // Get current count
-    const res=await fetch(SB_URL+'/rest/v1/visitors?id=eq.1&select=count',{headers});
-    const data=await res.json();
-    if(data&&data[0]){
-      const newCount=data[0].count+1;
-      // Update count
-      await fetch(SB_URL+'/rest/v1/visitors?id=eq.1',{method:'PATCH',headers,body:JSON.stringify({count:newCount})});
-      vis=newCount;
-    }else{vis=1247;}
-  }catch(e){vis=parseInt(localStorage.getItem('ll_v')||'1247');vis++;localStorage.setItem('ll_v',vis);}
+    const headers={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Accept':'application/json','Prefer':'return=representation'};
+    const res=await fetch(SB_URL+'/rest/v1/visitors?id=eq.1&select=count',{method:'GET',headers:headers,mode:'cors'});
+    if(res.ok){
+      const data=await res.json();
+      if(data&&data.length>0&&typeof data[0].count==='number'){
+        vis=data[0].count+1;
+        await fetch(SB_URL+'/rest/v1/visitors?id=eq.1',{method:'PATCH',headers:headers,mode:'cors',body:JSON.stringify({count:vis})});
+      }
+    }
+  }catch(e){
+    vis=parseInt(localStorage.getItem('ll_v')||'1247')+1;
+  }
+  localStorage.setItem('ll_v',String(vis));
   animateCount(vis);
 }
 trackVisitor();
@@ -603,7 +605,7 @@ document.getElementById('lBtn').addEventListener('click',function(){
   for(let i=0;i<15;i++){const c=document.createElement('div');c.textContent=['⭐','💎','💰','👑','💍','🏆'][Math.floor(Math.random()*6)];c.style.cssText=`position:fixed;font-size:1.5rem;pointer-events:none;z-index:99;left:${50+Math.random()*10-5}vw;top:50vh;transition:all 1.2s ease-out;opacity:1;`;document.body.appendChild(c);requestAnimationFrame(()=>{c.style.left=`${25+Math.random()*50}vw`;c.style.top=`${5+Math.random()*35}vh`;c.style.opacity='0';c.style.transform=`rotate(${Math.random()*360}deg) scale(.2)`;});setTimeout(()=>c.remove(),1400);}
 });
 
-const pp={r:['Hop hop! 🥕','*munching a carrot*','*wiggling nose*','*jumping with joy*'],d:['Woof woof! 🎾','*wagging tail*','*fetching the ball*','*licking your hand*','Let\'s go for a walk!']};
+const pp={r:['Hop hop! 🥕','Snowflake is munching a carrot!','*Snowflake wiggles nose*','*Snowflake jumps with joy*'],d:['Woof woof! 🎾','*Perry wags tail*','*Perry fetches the ball*','*Perry licks your hand*','Perry wants a walk!']};
 let pc={r:0,d:0};
 document.getElementById('rabbitC').addEventListener('click',function(){this.classList.remove('bounce');void this.offsetWidth;this.classList.add('bounce');pc.r++;document.getElementById('rS').textContent=pp.r[Math.floor(Math.random()*pp.r.length)];if(pc.r>=1&&pc.d>=1)unlock('pets');});
 document.getElementById('dogC').addEventListener('click',function(){this.classList.remove('bounce');void this.offsetWidth;this.classList.add('bounce');pc.d++;document.getElementById('dS').textContent=pp.d[Math.floor(Math.random()*pp.d.length)];if(pc.r>=1&&pc.d>=1)unlock('pets');});
@@ -646,6 +648,8 @@ const quizData=[
   {q:'Which racket sport does Lionel play?',o:['Tennis','Badminton','Padel','Squash'],a:2},
   {q:'What is Lionel\'s future brand?',o:['Perfected','Perfect','Threaded','Bulleted'],a:0},
   {q:'Who are Lionel\'s favorite teachers?',o:['Nastya & Andrey','Vika & Boris','Sven & Bobik','Tapia & Hiding'],a:0},
+  {q:'What is the name of Lionel\'s dog?',o:['Buddy','Rex','Perry','Charlie'],a:2},
+  {q:'What is the name of Lionel\'s rabbit?',o:['Cotton','Snowflake','Fluffy','Marshmallow'],a:1},
 ];
 let qIdx=0,qScore=0,qAnswered=false;
 function renderQ(){
@@ -671,7 +675,7 @@ function renderQ(){
 }
 renderQ();
 
-const rActs=['🏒 Scoring goals at practice','🥋 Training taekwondo kicks','🎮 Jumping into Roblox','⛏️ Building a castle in Minecraft','🏎️ Racing in a driving simulator','🐰 Petting the rabbit','🐕 Playing with the dog','🏜️ Riding his ATV','🛻 Driving the buggy off-road','🤸 Jumping on a trampoline','🚴 Riding his bike','🏊 Deep diving','🏸 Playing padel — smash!','✈️ Dreaming about traveling','💰 Trying on a gold chain','📚 Doing homework','🏍️ Dreaming about motorcycles','👑 Just looking like a boss','💎 Counting his diamonds','🏎️ Picking a Lamborghini color','🏎️ Watching a Bugatti Chiron review','🎂 Waiting for his birthday'];
+const rActs=['🏒 Scoring goals at practice','🥋 Training taekwondo kicks','🎮 Jumping into Roblox','⛏️ Building a castle in Minecraft','🏎️ Racing in a driving simulator','🐰 Petting Snowflake','🐕 Playing with Perry','🏜️ Riding his ATV','🛻 Driving the buggy off-road','🤸 Jumping on a trampoline','🚴 Riding his bike','🏊 Deep diving','🏸 Playing padel — smash!','✈️ Dreaming about traveling','💰 Trying on a gold chain','📚 Doing homework','🏍️ Dreaming about motorcycles','👑 Just looking like a boss','💎 Counting his diamonds','🏎️ Picking a Lamborghini color','🏎️ Watching a Bugatti Chiron review','🎂 Waiting for his birthday'];
 const rgenText=document.getElementById('rgenText');
 document.getElementById('rgenBtn').addEventListener('click',function(){
   rgenText.style.opacity='0';
