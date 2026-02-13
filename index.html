@@ -289,6 +289,18 @@ footer .m{color:var(--gold);font-weight:800;}
 .padel-score .lbl{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
 .padel-start{display:block;margin:12px auto 0;background:linear-gradient(135deg,var(--grn),#22aa00);color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.85rem;padding:10px 28px;border-radius:30px;cursor:pointer;transition:transform .2s;}
 .padel-start:hover{transform:scale(1.06);}
+
+/* RACING GAME */
+.race-wrap{background:linear-gradient(180deg,#0a0a1a,#151530);border:2px solid rgba(255,215,0,.15);border-radius:18px;padding:16px;position:relative;overflow:hidden;}
+.race-sub{text-align:center;font-size:.72rem;color:var(--dim);margin-bottom:12px;}
+.race-canvas-wrap{position:relative;width:100%;max-width:360px;margin:0 auto;}
+.race-canvas-wrap canvas{width:100%;border-radius:8px;border:2px solid rgba(255,215,0,.12);display:block;touch-action:none;}
+.race-hud{display:flex;justify-content:center;gap:16px;margin-top:12px;}
+.race-hud div{text-align:center;}
+.race-hud .num{font-family:'Russo One',sans-serif;font-size:1.3rem;color:var(--gold);}
+.race-hud .lbl{font-size:.55rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
+.race-start{display:block;margin:12px auto 0;background:linear-gradient(135deg,var(--gold),var(--gold3));color:#000;border:none;font-family:'Russo One',sans-serif;font-size:.85rem;padding:10px 28px;border-radius:30px;cursor:pointer;transition:transform .2s;}
+.race-start:hover{transform:scale(1.06);}
 .mem-stats{display:flex;justify-content:center;gap:20px;margin-bottom:12px;}
 .mem-stats div{text-align:center;}
 .mem-stats .num{font-family:'Russo One',sans-serif;font-size:1.3rem;color:var(--gold);}
@@ -572,6 +584,24 @@ footer .m{color:var(--gold);font-weight:800;}
       <div><div class="num" id="padelAI">0</div><div class="lbl">CPU</div></div>
     </div>
     <button class="padel-start" id="padelStart">🏸 Start Game</button>
+  </div>
+</section>
+
+<!-- RACING GAME -->
+<section class="sec rv">
+  <div class="sec-t"><span class="e">🏎️</span> Lambo Night Race!</div>
+  <div class="race-wrap">
+    <div class="race-sub">Tilt your phone or move mouse to steer · Dodge traffic · Collect gold!</div>
+    <div class="race-canvas-wrap">
+      <canvas id="raceCanvas" width="360" height="560"></canvas>
+    </div>
+    <div class="race-hud">
+      <div><div class="num" id="raceScore">0</div><div class="lbl">Score</div></div>
+      <div><div class="num" id="raceSpeed">0</div><div class="lbl">KM/H</div></div>
+      <div><div class="num" id="raceGold">0</div><div class="lbl">Gold</div></div>
+      <div><div class="num" id="raceBest">0</div><div class="lbl">Best</div></div>
+    </div>
+    <button class="race-start" id="raceStart">🏎️ Start Race!</button>
   </div>
 </section>
 <section class="sec rv">
@@ -1296,6 +1326,326 @@ rv.forEach(el=>io.observe(el));
   });
   
   // Initial draw
+  draw();
+  gameLoop();
+})();
+
+/* ===== RACING GAME ===== */
+(function(){
+  const canvas=document.getElementById('raceCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=360,H=560;
+  
+  let carX=W/2,carLane=1;
+  const carW=36,carH=64;
+  const lanes=[72,144,216,288];
+  let mouseX=W/2,useGyro=false;
+  
+  let obstacles=[],golds=[],particles=[];
+  let roadOffset=0,speed=0,maxSpeed=12;
+  let score=0,goldCount=0,bestScore=parseInt(localStorage.getItem('ll_race')||'0');
+  let gameRunning=false,gameOver=false;
+  let frame=0;
+  
+  // City lights (background buildings)
+  const buildings=[];
+  for(let i=0;i<20;i++){
+    buildings.push({x:Math.random()*W,h:40+Math.random()*80,w:15+Math.random()*25,
+      lights:Math.floor(Math.random()*6)+2,side:Math.random()>0.5?'L':'R'});
+  }
+  
+  // Stars
+  const stars=[];
+  for(let i=0;i<60;i++)stars.push({x:Math.random()*W,y:Math.random()*200,s:Math.random()*1.5+0.5,b:Math.random()});
+  
+  document.getElementById('raceBest').textContent=bestScore;
+  
+  const carColors=['#FFD700','#ff3b3b','#00e5ff','#a855f7','#39ff14'];
+  const carNames=['Lambo','Ferrari','Bugatti','McLaren','Porsche'];
+  
+  function drawRoad(){
+    // Sky gradient (night)
+    const sky=ctx.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0,'#050510');sky.addColorStop(0.3,'#0a0a25');sky.addColorStop(1,'#111133');
+    ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+    
+    // Stars
+    stars.forEach(s=>{
+      const flicker=0.5+Math.sin(frame*0.02+s.b*10)*0.5;
+      ctx.fillStyle=`rgba(255,255,255,${flicker*0.7})`;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.s,0,Math.PI*2);ctx.fill();
+    });
+    
+    // Buildings silhouettes
+    buildings.forEach(b=>{
+      const bx=b.side==='L'?b.x*0.25:W-b.x*0.25;
+      ctx.fillStyle='#0d0d20';
+      ctx.fillRect(bx-b.w/2,200-b.h,b.w,b.h+H);
+      // Windows
+      for(let j=0;j<b.lights;j++){
+        const wy=200-b.h+10+j*14;
+        const on=Math.sin(frame*0.01+j+b.x)>0;
+        ctx.fillStyle=on?'rgba(255,220,100,.6)':'rgba(50,50,80,.3)';
+        ctx.fillRect(bx-b.w/2+4,wy,4,4);
+        ctx.fillRect(bx+b.w/2-8,wy,4,4);
+      }
+    });
+    
+    // Road surface
+    ctx.fillStyle='#222';ctx.fillRect(40,0,W-80,H);
+    
+    // Road edges (neon glow)
+    ctx.shadowColor='#FFD700';ctx.shadowBlur=8;
+    ctx.fillStyle='#FFD700';ctx.fillRect(38,0,3,H);ctx.fillRect(W-41,0,3,H);
+    ctx.shadowBlur=0;
+    
+    // Grass/gravel
+    ctx.fillStyle='#0a1a0a';ctx.fillRect(0,0,40,H);ctx.fillRect(W-40,0,40,H);
+    
+    // Lane markings (dashed)
+    ctx.strokeStyle='rgba(255,255,255,.3)';ctx.lineWidth=2;ctx.setLineDash([30,30]);
+    for(let l=1;l<4;l++){
+      const lx=40+(W-80)/4*l;
+      ctx.beginPath();ctx.moveTo(lx,(-roadOffset%60)-60);ctx.lineTo(lx,H);ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    
+    // Center line (solid yellow)
+    ctx.strokeStyle='rgba(255,215,0,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(W/2,0);ctx.lineTo(W/2,H);ctx.stroke();
+  }
+  
+  function drawCar(x,y,w,h,color,isPlayer){
+    ctx.save();
+    if(isPlayer){
+      // Headlight glow
+      ctx.shadowColor=color;ctx.shadowBlur=25;
+      // Headlight beams
+      const beamGrad=ctx.createLinearGradient(x,y-100,x,y);
+      beamGrad.addColorStop(0,'rgba(255,255,200,0)');beamGrad.addColorStop(1,'rgba(255,255,200,.08)');
+      ctx.fillStyle=beamGrad;
+      ctx.beginPath();ctx.moveTo(x-w/2+4,y);ctx.lineTo(x-w,y-100);ctx.lineTo(x+w,y-100);ctx.lineTo(x+w/2-4,y);ctx.fill();
+    }
+    
+    // Car body
+    ctx.fillStyle=color;
+    ctx.beginPath();
+    ctx.roundRect(x-w/2,y-h/2,w,h,isPlayer?[8,8,4,4]:[4,4,8,8]);
+    ctx.fill();
+    
+    // Windshield
+    ctx.fillStyle=isPlayer?'rgba(0,200,255,.3)':'rgba(100,100,120,.5)';
+    const wsY=isPlayer?y-h/2+8:y+h/2-18;
+    ctx.beginPath();ctx.roundRect(x-w/2+5,wsY,w-10,14,3);ctx.fill();
+    
+    // Racing stripe
+    ctx.fillStyle='rgba(0,0,0,.2)';
+    ctx.fillRect(x-3,y-h/2,6,h);
+    
+    // Wheels
+    ctx.fillStyle='#111';
+    ctx.fillRect(x-w/2-2,y-h/2+6,5,10);ctx.fillRect(x+w/2-3,y-h/2+6,5,10);
+    ctx.fillRect(x-w/2-2,y+h/2-16,5,10);ctx.fillRect(x+w/2-3,y+h/2-16,5,10);
+    
+    if(isPlayer){
+      // Taillights
+      ctx.shadowColor='#ff0000';ctx.shadowBlur=10;
+      ctx.fillStyle='#ff2222';
+      ctx.fillRect(x-w/2+2,y+h/2-4,8,3);ctx.fillRect(x+w/2-10,y+h/2-4,8,3);
+      
+      // Headlights
+      ctx.shadowColor='#ffffaa';ctx.shadowBlur=12;
+      ctx.fillStyle='#ffffcc';
+      ctx.fillRect(x-w/2+3,y-h/2,7,3);ctx.fillRect(x+w/2-10,y-h/2,7,3);
+    }else{
+      // Enemy taillights
+      ctx.shadowColor='#ff0000';ctx.shadowBlur=6;
+      ctx.fillStyle='#ff3333';
+      ctx.fillRect(x-w/2+3,y-h/2,6,3);ctx.fillRect(x+w/2-9,y-h/2,6,3);
+    }
+    ctx.shadowBlur=0;
+    ctx.restore();
+  }
+  
+  function drawGold(x,y){
+    ctx.save();
+    const pulse=1+Math.sin(frame*0.1)*0.15;
+    ctx.shadowColor='#FFD700';ctx.shadowBlur=15;
+    ctx.fillStyle='#FFD700';
+    ctx.beginPath();ctx.arc(x,y,10*pulse,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#000';ctx.font='bold 11px Russo One';ctx.textAlign='center';
+    ctx.fillText('$',x,y+4);
+    ctx.shadowBlur=0;ctx.restore();
+  }
+  
+  function spawnObstacle(){
+    const lane=Math.floor(Math.random()*4);
+    const colorIdx=Math.floor(Math.random()*carColors.length);
+    obstacles.push({x:lanes[lane],y:-80,color:carColors[colorIdx],w:32,h:56,speed:1+Math.random()*2});
+  }
+  
+  function spawnGold(){
+    const lane=Math.floor(Math.random()*4);
+    golds.push({x:lanes[lane],y:-30});
+  }
+  
+  function addExplosion(x,y){
+    for(let i=0;i<20;i++){
+      particles.push({x,y,vx:(Math.random()-.5)*8,vy:(Math.random()-.5)*8,
+        life:1,color:Math.random()>.5?'#FFD700':'#ff3b3b',size:2+Math.random()*4});
+    }
+  }
+  
+  function update(){
+    if(!gameRunning||gameOver)return;
+    frame++;
+    
+    // Speed ramp
+    speed=Math.min(maxSpeed,3+score*0.015);
+    roadOffset+=speed;
+    
+    // Move car
+    const targetX=mouseX;
+    carX+=(targetX-carX)*0.15;
+    carX=Math.max(40+carW/2+4,Math.min(W-40-carW/2-4,carX));
+    
+    // Spawn
+    if(frame%Math.max(20,50-Math.floor(score/5))===0)spawnObstacle();
+    if(frame%45===0)spawnGold();
+    
+    // Move obstacles
+    obstacles.forEach(o=>{o.y+=speed-o.speed;});
+    obstacles=obstacles.filter(o=>{
+      if(o.y>H+80){score++;document.getElementById('raceScore').textContent=score;return false;}
+      return true;
+    });
+    
+    // Move golds
+    golds.forEach(g=>{g.y+=speed;});
+    golds=golds.filter(g=>{
+      if(g.y>H+40)return false;
+      // Collect
+      if(Math.abs(g.x-carX)<24&&Math.abs(g.y-(H-80))<24){
+        goldCount++;document.getElementById('raceGold').textContent=goldCount;
+        score+=3;document.getElementById('raceScore').textContent=score;
+        // Gold particles
+        for(let i=0;i<8;i++){
+          particles.push({x:g.x,y:g.y,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,
+            life:1,color:'#FFD700',size:2+Math.random()*3});
+        }
+        return false;
+      }
+      return true;
+    });
+    
+    // Collision check
+    const carY=H-80;
+    obstacles.forEach(o=>{
+      if(Math.abs(o.x-carX)<(carW/2+o.w/2-6)&&Math.abs(o.y-carY)<(carH/2+o.h/2-6)){
+        gameOver=true;
+        addExplosion(carX,carY);
+        if(score>bestScore){bestScore=score;localStorage.setItem('ll_race',bestScore);document.getElementById('raceBest').textContent=bestScore;}
+      }
+    });
+    
+    // Particles
+    particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life-=0.03;p.vy+=0.1;});
+    particles=particles.filter(p=>p.life>0);
+    
+    document.getElementById('raceSpeed').textContent=Math.floor(speed*25);
+  }
+  
+  function draw(){
+    drawRoad();
+    
+    // Gold coins
+    golds.forEach(g=>drawGold(g.x,g.y));
+    
+    // Obstacles (traffic)
+    obstacles.forEach(o=>drawCar(o.x,o.y,o.w,o.h,o.color,false));
+    
+    // Player car
+    if(!gameOver)drawCar(carX,H-80,carW,carH,'#FFD700',true);
+    
+    // Particles
+    particles.forEach(p=>{
+      ctx.globalAlpha=p.life;ctx.fillStyle=p.color;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    
+    // Speed lines
+    if(gameRunning&&!gameOver&&speed>5){
+      for(let i=0;i<3;i++){
+        const lx=carX-carW/2-10-Math.random()*20;
+        const ly=H-60+Math.random()*40;
+        ctx.strokeStyle=`rgba(255,255,255,${0.1+Math.random()*0.15})`;
+        ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(lx,ly);ctx.lineTo(lx,ly+10+speed*2);ctx.stroke();
+        const rx=carX+carW/2+10+Math.random()*20;
+        ctx.beginPath();ctx.moveTo(rx,ly);ctx.lineTo(rx,ly+10+speed*2);ctx.stroke();
+      }
+    }
+    
+    // Game over overlay
+    if(gameOver){
+      ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#ff3b3b';ctx.font='bold 28px Russo One';ctx.textAlign='center';
+      ctx.fillText('CRASH!',W/2,H/2-30);
+      ctx.fillStyle='#FFD700';ctx.font='bold 18px Russo One';
+      ctx.fillText('Score: '+score,W/2,H/2+10);
+      ctx.fillStyle='#fff';ctx.font='14px Nunito';
+      ctx.fillText('Gold collected: '+goldCount,W/2,H/2+40);
+      if(score>=bestScore)ctx.fillText('🏆 NEW RECORD!',W/2,H/2+65);
+    }
+    
+    if(!gameRunning&&!gameOver){
+      ctx.fillStyle='rgba(0,0,0,.5)';ctx.fillRect(0,H/2-40,W,80);
+      ctx.fillStyle='#FFD700';ctx.font='bold 18px Russo One';ctx.textAlign='center';
+      ctx.fillText('🏎️ LAMBO NIGHT RACE',W/2,H/2-5);
+      ctx.fillStyle='#fff';ctx.font='12px Nunito';
+      ctx.fillText('Dodge traffic · Collect gold!',W/2,H/2+20);
+    }
+  }
+  
+  function gameLoop(){
+    update();draw();
+    requestAnimationFrame(gameLoop);
+  }
+  
+  // Input
+  function getRaceX(e){
+    const rect=canvas.getBoundingClientRect();
+    const scaleX=W/rect.width;
+    const clientX=e.touches?e.touches[0].clientX:e.clientX;
+    return(clientX-rect.left)*scaleX;
+  }
+  canvas.addEventListener('mousemove',function(e){if(gameRunning)mouseX=getRaceX(e);});
+  canvas.addEventListener('touchmove',function(e){e.preventDefault();if(gameRunning)mouseX=getRaceX(e);},{passive:false});
+  canvas.addEventListener('touchstart',function(e){e.preventDefault();if(gameRunning)mouseX=getRaceX(e);},{passive:false});
+  
+  // Gyroscope (mobile tilt)
+  if(window.DeviceOrientationEvent){
+    window.addEventListener('deviceorientation',function(e){
+      if(!gameRunning||gameOver)return;
+      if(e.gamma!==null){
+        useGyro=true;
+        mouseX=W/2+(e.gamma/30)*W/2;
+        mouseX=Math.max(60,Math.min(W-60,mouseX));
+      }
+    });
+  }
+  
+  document.getElementById('raceStart').addEventListener('click',function(){
+    obstacles=[];golds=[];particles=[];
+    carX=W/2;mouseX=W/2;
+    score=0;goldCount=0;speed=0;frame=0;
+    gameOver=false;gameRunning=true;
+    document.getElementById('raceScore').textContent='0';
+    document.getElementById('raceSpeed').textContent='0';
+    document.getElementById('raceGold').textContent='0';
+    this.textContent='🏎️ Restart';
+  });
+  
   draw();
   gameLoop();
 })();
